@@ -1,0 +1,13 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        
+        char_count = {}
+        
+        for i in s:
+            char_count[i] = char_count.get(i, 0) + 1
+            
+        for j, i in enumerate(s):
+            if char_count[i] == 1:
+                return j
+            
+        return -1
