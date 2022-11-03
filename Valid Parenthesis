@@ -1,0 +1,25 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        """
+        stack data structure is optimal, where I will traverse through the expression & push one by one to the stack. 
+        if the character is a closing bracket POP it from the stack and match it w/the starting bracket
+        """
+        stack_dic = []
+        opener = set('([{')
+        closer = set(')]}')
+        key_pair = {')' : '(', ']' : '[', '}' : '{'}
+
+        for i in s:
+            if i in opener:
+                stack_dic.append(i)
+            if i in closer:
+                if not stack_dic:
+                    return False
+                elif stack_dic.pop() != key_pair[i]:
+                    return False
+                else:
+                    continue
+        if not stack_dic:
+            return True
+        else:
+            return False
